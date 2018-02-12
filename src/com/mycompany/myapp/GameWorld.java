@@ -1,14 +1,14 @@
 package com.mycompany.myapp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameWorld {
-	private float[] mapX,mapY;
+	private ArrayList<GameObject> objlist = n;
 	
 	public void init() {
-		mapX = new float[1024];
-		mapY = new float[768];
-	}
-	
-	public void buildWorld() {
+		
 		
 	}
+	
+	
 }
