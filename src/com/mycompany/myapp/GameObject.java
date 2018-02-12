@@ -3,11 +3,11 @@ package com.mycompany.myapp;
 public class GameObject {
 	private double[] location;
 	
-	public void GameObject() {
+	public GameObject() {
 		location = new double[2];
 	}
 	
-	public void setLoc(float x, float y)
+	public void setLoc(double x, double y)
 	{
 		location[0] = x;
 		location[y] = y;
