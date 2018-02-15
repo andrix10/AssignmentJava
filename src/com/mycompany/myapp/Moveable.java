@@ -1,22 +1,26 @@
 package com.mycompany.myapp;
 import java.util.Random;
+import java.lang.Math;
 
-public class Moveable extends GameObject{
+public abstract class Moveable extends GameObject{
 	private int speed, direction;
 	
-	public Movable() {
+	public Moveable() {
+		speed=0;
+		direction = 0;
+	}
+	
+	public void rand() {
 		Random rand = new Random();
 		speed = rand.nextInt(10) + 0;
-		direction = rand.nextI(359) + 0;
+		direction = rand.nextInt(359) + 0;
 	}
 	
-	public Movable(int a, int b) {
+	public void setSpeed(int a) {
 		speed = a;
-		direction = b;
 	}
 	
-	public void setSpDir(int a, int b) {
-		speed = a;
+	public void setDir(int b) {
 		direction = b;
 	}
 
@@ -25,10 +29,18 @@ public class Moveable extends GameObject{
 		double rad = Math.toRadians(90-direction);
 		x = Math.cos(rad)*speed;
 		y = Math.sin(rad)*speed;
+
+		Location l = new Location(x,y);
+		getLocation().add(l);
 		
-		
-		this.setLoc(this.getX()+x,this.getY()+y);
 	}
 	
+	public int getSpeed() {
+		return speed;
+	}
+	
+	public int getDirection() {
+		return direction;
+	}
 	
 }

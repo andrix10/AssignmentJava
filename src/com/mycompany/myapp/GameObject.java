@@ -1,23 +1,38 @@
 package com.mycompany.myapp;
 
-public class GameObject {
-	private double[] location;
+public abstract class GameObject {
+	private Location location;
+	private int color;
 	
 	public GameObject() {
-		location = new double[2];
+		location.reset();
 	}
 	
-	public void setLoc(double x, double y)
-	{
-		location[0] = x;
-		location[y] = y;
+	public GameObject(double x, double y) {
+		location.set(x,y);
+		
 	}
 	
-	public double getX() {
-		return location[0];
+	public GameObject(Location loc) {
+		location.setX(loc);
+		location.setY(loc);
 	}
 	
-	public double getY() {
-		return location[1];
+	public void setLoc(Location loc) {
+		location.set(loc.getX(), loc.getY());
 	}
+	
+	public Location getLocation() {
+		return location;
+	}
+	
+	
+	public void setColor() {
+		
+	}
+	
+	public void getCorlor() {
+		
+	}
+	
 }

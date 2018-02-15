@@ -3,13 +3,13 @@ package com.mycompany.myapp;
 public class Missle extends Moveable{
 	private int fuel;
 	
-	public Missle(double a, double b, int c) {
+	public Missle(Ship s) {
+		setLoc(s.getLocation());
+		setSpeed(s.getSpeed()*2);
 		fuel = 10;
-		this.setLoc(a, b);
-		this.setSpDir(c, this.getY());
 	}
 	
-	public void decMis() {
+	public void dec() {
 		fuel =- 1;
 	}
 }
