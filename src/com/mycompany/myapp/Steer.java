@@ -1,5 +1,6 @@
 package com.mycompany.myapp;
 
 public interface Steer{
-	public void steer(boolean st);
+	public void steerL();
+	public void steerR();
 }

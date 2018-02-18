@@ -1,8 +1,7 @@
 package com.mycompany.myapp;
-import java.util.Random;
 import java.lang.Math;
 
-public abstract class Moveable extends GameObject{
+public abstract class Moveable extends GameObject implements IMoveable{
 	private int speed, direction;
 	
 	public Moveable() {
@@ -11,13 +10,13 @@ public abstract class Moveable extends GameObject{
 	}
 	
 	public void rand() {
-		Random rand = new Random();
-		speed = rand.nextInt(10) + 0;
-		direction = rand.nextInt(359) + 0;
+		speed = ran(0,10);
+		direction = ran(0,359);
+		getLocation().ran();
 	}
 	
 	public void setSpeed(int a) {
-		speed = a;
+		if (a >=0) speed = a;
 	}
 	
 	public void setDir(int b) {
@@ -29,9 +28,11 @@ public abstract class Moveable extends GameObject{
 		double rad = Math.toRadians(90-direction);
 		x = Math.cos(rad)*speed;
 		y = Math.sin(rad)*speed;
+		System.out.println(" "+x +" "+y+ " ");
 
 		Location l = new Location(x,y);
 		getLocation().add(l);
+		getLocation().round();
 		
 	}
 	
@@ -41,6 +42,13 @@ public abstract class Moveable extends GameObject{
 	
 	public int getDirection() {
 		return direction;
+	}
+	
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		String myDesc = "speed: " + getSpeed() + " " + "direction " + getDirection() + " ";
+		return parentDesc + myDesc;
 	}
 	
 }

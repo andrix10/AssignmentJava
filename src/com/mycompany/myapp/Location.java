@@ -1,8 +1,11 @@
 package com.mycompany.myapp;
+import java.util.Random;
+import java.lang.Math;
 
 public class Location {
-	private double x;
-	private double y;
+	private double x,y;
+	private double maxX = 1024;
+	private double maxY = 768;
 	
 	public Location(){
 		this.x = 0;
@@ -17,12 +20,23 @@ public class Location {
 		set(loc.x, loc.y);
 	}
 	
+	public void ran() {
+		Random rand = new Random();
+		x = rand.nextInt(1024) + 0;
+		y = rand.nextInt(768) + 0;
+	}
+	
 	public void reset() {
 		set(0, 0);
 	}
 	
 	public double getX() {
 		return this.x;
+	}
+	
+	public void round() {
+		x = Math.round(x*10.0)/10.0;
+		y = Math.round(y*10.0)/10.0;
 	}
 	
 	public double getY() {
@@ -46,20 +60,20 @@ public class Location {
 	}
 	
 	public void addY(Location loc) {
-		this.y =+ loc.y;
+		this.y += loc.y;
 	}
 	
 	public void addX(Location loc) {
-		this.x =+ loc.x;
+		this.x += loc.x;
 	}
 	
 	public void add(Location loc) {
-		x =+ loc.x;
-		y =+ loc.y; 
+		this.x += loc.x;
+		this.y += loc.y; 
 	}
 	
 	public void addX(double x) {
-		this.x =+ x;
+		this.x += x;
 	}
 	
 	public void addY(double y) {

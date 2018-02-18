@@ -37,9 +37,7 @@ public class Starter {
             current.show();
             return;
         }
-        System.out.print("one");
         new Game();
-        System.out.print("two");
     }
 
     public void stop() {
