@@ -48,6 +48,7 @@ public class GameWorld {
 			GameObject k = i.next();
 			if(k instanceof Asteroid) {
 				i.remove();
+				break;
 			}
 		}
 	}
@@ -58,6 +59,8 @@ public class GameWorld {
 			GameObject k = i.next();
 			if(k instanceof Ship) {
 				i.remove();
+				ship.destroy();
+				break;
 			}
 		}
 		ship = null;
@@ -69,6 +72,7 @@ public class GameWorld {
 			GameObject k = i.next();
 			if(k instanceof Saucer) {
 				i.remove();
+				break;
 			}
 		}
 	}
@@ -79,6 +83,7 @@ public class GameWorld {
 			GameObject k = i.next();
 			if(k instanceof Missle) {
 				i.remove();
+				break;
 			}
 		}
 	}
@@ -89,6 +94,7 @@ public class GameWorld {
 			GameObject k = i.next();
 			if(k instanceof Station) {
 				i.remove();
+				break;
 			}
 		}
 	}

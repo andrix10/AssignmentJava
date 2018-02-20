@@ -19,6 +19,10 @@ public class Ship extends Moveable implements Steer{
 		return instance;
 	}
 	
+	public void  destroy() {
+		instance = null;
+	}
+	
 	public void steerR() {
 		setDir((getDirection()+15));
 	}
