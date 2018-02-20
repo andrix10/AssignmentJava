@@ -2,6 +2,7 @@ package com.mycompany.myapp;
 
 public class Asteroid extends Moveable{
 	private int size;
+	
 	public Asteroid() {
 		rand();
 		size = ran(6, 30);
@@ -12,6 +13,7 @@ public class Asteroid extends Moveable{
 		setColor(a);
 	}
 	
+	@Override
 	public String toString() {
 		String parentDesc = "Asteroid: " + super.toString();
 		String myDesc = "size: " + size + " ";

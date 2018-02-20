@@ -24,6 +24,7 @@ public class Missle extends Moveable{
 		setColor(a);
 	}
 	
+	@Override
 	public String toString() {
 		String parentDesc = "Missle: " + super.toString();
 		String myDesc = "fuel: " + getFuel() +" ";
