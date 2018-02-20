@@ -9,7 +9,7 @@ public class Missle extends Moveable{
 		else setSpeed(2);
 		setDir(s.getDirection());
 		fuel = 10;
-		setColor(1);
+		setColor(0);
 	}
 	
 	public void dec() {
@@ -20,8 +20,12 @@ public class Missle extends Moveable{
 		return fuel;
 	}
 	
+	public void changeColor(int a) {
+		setColor(a);
+	}
+	
 	public String toString() {
-		String parentDesc = super.toString();
+		String parentDesc = "Missle: " + super.toString();
 		String myDesc = "fuel: " + getFuel() +" ";
 		return parentDesc + myDesc;
 	}

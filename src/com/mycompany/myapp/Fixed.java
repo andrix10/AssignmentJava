@@ -6,5 +6,17 @@ public class Fixed extends GameObject{
 	public Fixed() {
 		id = nextId;
 		nextId++;
+		getLocation().ran();
+	}
+	
+	public int getID() {
+		return id;
+	}
+	
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		String myDesc = "id: " + getID() + " ";
+		return parentDesc + myDesc;
 	}
 }

@@ -5,11 +5,15 @@ public class Asteroid extends Moveable{
 	public Asteroid() {
 		rand();
 		size = ran(6, 30);
-		setColor(2);
+		setColor(1);
+	}
+	
+	public void changeColor(int a) {
+		setColor(a);
 	}
 	
 	public String toString() {
-		String parentDesc = super.toString();
+		String parentDesc = "Asteroid: " + super.toString();
 		String myDesc = "size: " + size + " ";
 		return parentDesc + myDesc;
 	}

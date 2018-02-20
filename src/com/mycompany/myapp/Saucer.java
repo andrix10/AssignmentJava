@@ -5,7 +5,8 @@ public class Saucer extends Moveable {
 	private boolean size;
 	public Saucer() {
 		super();
-		setColor(3);
+		rand();
+		setColor(2);
 		int ran = ran(1,20);
 		if(ran >10) {
 			size = true;
@@ -14,4 +15,22 @@ public class Saucer extends Moveable {
 		}
 	}
 	
+	public boolean getSize() {
+		return size;
+	}
+	
+	public void changeColor(int a) {
+		setColor(a);
+	}
+	
+	@Override
+	public String toString() {
+		String s;
+		if(getSize()) s = "large";
+		else s = "small";
+			
+		String parentDesc = "Saucer: " + super.toString();
+		String myDesc = "size: " + s + " ";
+		return parentDesc + myDesc;
+	}
 }

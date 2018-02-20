@@ -28,12 +28,8 @@ public abstract class Moveable extends GameObject implements IMoveable{
 		double rad = Math.toRadians(90-direction);
 		x = Math.cos(rad)*speed;
 		y = Math.sin(rad)*speed;
-		System.out.println(" "+x +" "+y+ " ");
-
-		Location l = new Location(x,y);
-		getLocation().add(l);
-		getLocation().round();
-		
+		//System.out.println(" "+x +" "+y+ " ");
+		getLocation().add(x,y);		
 	}
 	
 	public int getSpeed() {

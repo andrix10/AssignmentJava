@@ -8,7 +8,7 @@ public class Ship extends Moveable implements Steer{
 		super();
 		getLocation().reset();
 		this.missle = 12;
-		setColor(1);
+		setColor(0);
 	}
 	
 	public static Ship getInst() {
@@ -20,11 +20,11 @@ public class Ship extends Moveable implements Steer{
 	}
 	
 	public void steerR() {
-			setDir(getDirection()+15);
+		setDir((getDirection()+15));
 	}
 	
 	public void steerL() {
-			setDir(getDirection()-15);
+		setDir((getDirection()-15));
 	}
 	
 	public void fire() {
@@ -46,7 +46,7 @@ public class Ship extends Moveable implements Steer{
 	
 	@Override
 	public String toString() {
-		String parentDesc = super.toString();
+		String parentDesc = "Ship: " + super.toString();
 		String myDesc = "missles: " + getMissle() + " ";
 		return parentDesc + myDesc;
 	}

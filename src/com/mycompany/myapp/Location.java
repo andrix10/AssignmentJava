@@ -8,8 +8,8 @@ public class Location {
 	private double maxY = 768;
 	
 	public Location(){
-		this.x = 0;
-		this.y = 0;
+		this.x = 512;
+		this.y = 384;
 	}
 	
 	public Location(double xx, double yy){
@@ -27,7 +27,7 @@ public class Location {
 	}
 	
 	public void reset() {
-		set(0, 0);
+		set(512, 384);
 	}
 	
 	public double getX() {
@@ -44,45 +44,66 @@ public class Location {
 	}
 	
 	public void setX(double xx) {
-		this.x = xx;
+		set(xx,y);
+		round();
 	}
 	
 	public void setY(double yy) {
-		this.y = yy;
+		set(x,yy);
+		round();
 	}
 	
 	public void setX(Location loc) {
 		this.x = loc.x;
+		set(loc.x,y);
+		round();
 	}
 	
 	public void setY(Location loc) {
-		this.y = loc.y;
+		set(x,loc.y);
+		round();
 	}
 	
 	public void addY(Location loc) {
 		this.y += loc.y;
+		round();
 	}
 	
 	public void addX(Location loc) {
 		this.x += loc.x;
+		round();
 	}
 	
 	public void add(Location loc) {
-		this.x += loc.x;
-		this.y += loc.y; 
+		addX(loc);
+		addY(loc);
+		round();
+	}
+	
+	public void add(double xx, double yy) {
+		addX(xx);
+		addY(yy);
+		round();
 	}
 	
 	public void addX(double x) {
 		this.x += x;
+		round();
 	}
 	
 	public void addY(double y) {
-		this.y = y;
+		this.y += y;
+		round();
 	}
 	
 	public void set(double xx, double yy) {
-		this.x = xx;
-		this.y = yy;
+		if(xx>1024) x = 1024;
+		else if(xx<0) x = 0;
+		else x = xx;
+		
+		if(yy>768) y = 768;
+		else if(yy<0) y = 0;
+		else y = yy;
 	}
 
 }

@@ -27,6 +27,7 @@ public class GameWorld {
 			ship = Ship.getInst();
 			objlist.add(ship);
 		}
+		else objlist.add(ship);
 	}
 	
 	public void createSaucer() {
@@ -59,6 +60,7 @@ public class GameWorld {
 				i.remove();
 			}
 		}
+		ship = null;
 	}
 	
 	public void destroySaucer() {
@@ -107,10 +109,12 @@ public class GameWorld {
 	public void tick() {
 		timer =+ 1;
 		for(GameObject i: objlist){
+			
 			if(i instanceof Moveable){
 				Moveable temp = (Moveable)i;
 				temp.move();
 			}
+			
 			if(i instanceof Missle){
 				Missle temp = (Missle)i;
 				if(temp.getFuel() == 1)
@@ -118,6 +122,7 @@ public class GameWorld {
 				else
 					temp.dec();
 			}
+			
 			if(i instanceof Station){
 				Station temp = (Station)i;
 				if(timer % temp.getBlink() == 0)
@@ -128,14 +133,22 @@ public class GameWorld {
 	}
 	
 	public void printD() {
-		System.out.print("score: " + score + " missles: " + ship.getMissle()+" time: " +timer+" lives: " + lives +" ");
-	}
-	public void moveShip() {
-		
+		if(ship !=null )
+			System.out.println("score: " + score + " missles: " + ship.getMissle()+" time: " +timer+" lives: " + lives +" ");
+		else 
+			System.out.println("score: " + score + " time: " +timer+" lives: " + lives +" ");
 	}
 	
-	public void moveRocket() {
-		
+	public void score(boolean f) {
+		if(f)score++;
+		else if(score>=0)score--;
+		else score = 0;
+	}
+	
+	public int life(boolean f) {
+		if(f)lives++;
+		else if(lives>0 && !f)lives--;
+		return lives;
 	}
 	
 	public void increaseSS() {

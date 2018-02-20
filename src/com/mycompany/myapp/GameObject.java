@@ -37,8 +37,9 @@ public abstract class GameObject {
 	public void setColor(int a) {
 		if(a == 0) color = ColorUtil.GREEN;
 		else if(a == 1) color = ColorUtil.BLUE;
-		else color = ColorUtil.MAGENTA;
-		
+		else if(a == 2)color = ColorUtil.MAGENTA;
+		else if(a == 3)color = ColorUtil.CYAN;
+		else color = ColorUtil.YELLOW;
 	}
 	
 	public String getColor() {
@@ -46,6 +47,7 @@ public abstract class GameObject {
 		return s;
 	}
 	
+	@Override
 	public String toString() {
 		String myDesc = "loc: " + getLocation().getX() + " " + getLocation().getY() + " " + "color: " + getColor() + " ";
 		return myDesc;
