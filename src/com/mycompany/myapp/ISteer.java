@@ -1,6 +1,6 @@
 package com.mycompany.myapp;
 
-public interface Steer{
+public interface ISteer{
 	public void steerL();
 	public void steerR();
 }

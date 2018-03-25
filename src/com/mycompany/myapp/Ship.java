@@ -1,6 +1,6 @@
 package com.mycompany.myapp;
 
-public class Ship extends Moveable implements Steer{
+public class Ship extends Moveable implements ISteer{
 	private int missle;
 	private static Ship instance = null;
 	
@@ -44,6 +44,9 @@ public class Ship extends Moveable implements Steer{
 		missle = 12;
 	}
 	
+	public void dec() {
+		if(missle>0) missle -= 1;
+	}
 	public int getMissle() {
 		return missle;
 	}

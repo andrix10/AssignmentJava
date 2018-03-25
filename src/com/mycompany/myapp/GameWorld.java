@@ -1,13 +1,15 @@
 package com.mycompany.myapp;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.Iterator;
 import java.util.List;
 
-public class GameWorld {
+public class GameWorld extends Observable implements IGameWorld{
 	private ArrayList<GameObject> objlist;
 	private boolean turn;
 	private Ship ship = null;
 	private int timer,lives,score,id;
+	private GameWorldProxy gwp;
 	
 	
 	public void init() {
@@ -16,6 +18,9 @@ public class GameWorld {
 		this.lives = 3;
 		this.score = 0;
 		this.id = 0;
+		gwp = new GameWorldProxy(this);
+		setChanged();
+		notifyObservers(gwp);
 	}
 	
 	public void createAs() {
@@ -27,7 +32,6 @@ public class GameWorld {
 			ship = Ship.getInst();
 			objlist.add(ship);
 		}
-		else objlist.add(ship);
 	}
 	
 	public void createSaucer() {
@@ -35,7 +39,11 @@ public class GameWorld {
 	}
 	
 	public void createMissle() {
-		objlist.add(new Missle(ship));
+		if(ship==null)return;
+		else {
+			objlist.add(new Missle(ship));
+			ship.dec();
+		}
 	}
 	
 	public void createStation() {
@@ -109,7 +117,9 @@ public class GameWorld {
 	}
 	
 	public void reffilS() {
+		setChanged();
 		ship.refill();
+		notifyObservers(gwp);
 	}
 	
 	public void tick() {
@@ -124,7 +134,7 @@ public class GameWorld {
 			if(i instanceof Missle){
 				Missle temp = (Missle)i;
 				if(temp.getFuel() == 1)
-					objlist.remove(i);
+					destroyMissle();
 				else
 					temp.dec();
 			}
@@ -136,24 +146,30 @@ public class GameWorld {
 			}
 			
 		}
+		setChanged();
+		notifyObservers(gwp);
 	}
-	
+	/*
 	public void printD() {
 		if(ship !=null )
 			System.out.println("score: " + score + " missles: " + ship.getMissle()+" time: " +timer+" lives: " + lives +" ");
 		else 
 			System.out.println("score: " + score + " time: " +timer+" lives: " + lives +" ");
-	}
+	}*/
 	
 	public void score(boolean f) {
 		if(f)score++;
 		else if(score>=0)score--;
 		else score = 0;
+		setChanged();
+		notifyObservers(gwp);
 	}
 	
 	public int life(boolean f) {
 		if(f)lives++;
 		else if(lives>0 && !f)lives--;
+		setChanged();
+		notifyObservers(gwp);
 		return lives;
 	}
 	
@@ -170,4 +186,12 @@ public class GameWorld {
 			System.out.print(i + "\n");
 		}
 	}
+	
+	public String printD() {
+		if(ship == null)
+			return "score: " + score + " missles: 0" +" time: " +timer+" lives: " + lives + " ";		
+		else
+			return "score: " + score + " missles: " + ship.getMissle()+" time: " +timer+" lives: " + lives + " ";		
+	}
+	
 }

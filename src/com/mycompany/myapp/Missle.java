@@ -8,7 +8,7 @@ public class Missle extends Moveable{
 		if(s.getSpeed()>0) setSpeed(s.getSpeed()*2);
 		else setSpeed(2);
 		setDir(s.getDirection());
-		fuel = 10;
+		fuel = 2;
 		setColor(0);
 	}
 	
