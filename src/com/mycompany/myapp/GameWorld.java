@@ -1,4 +1,5 @@
 package com.mycompany.myapp;
+import java.lang.Math;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.Iterator;
@@ -29,12 +30,55 @@ public class GameWorld extends Observable implements IGameWorld{
 		loc.setWidth(x);
 	}
 	
+	public void splitTwo(){
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
+		while(i.hasNext()){
+			k = i.next();
+			if(k instanceof Asteroid) {
+				createAs((((Asteroid) k).getSize())/2);
+				((Asteroid) k).setSize((((Asteroid) k).getSize())/2);
+				break;
+			}
+		}
+	}
+	
+	public void splitThree() {
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
+		while(i.hasNext()){
+			k = i.next();
+			if(k instanceof Asteroid) {
+				createAs(((Asteroid) k).getSize()/3);
+				createAs((((Asteroid) k).getSize()/3)/2);
+				((Asteroid) k).setSize((((Asteroid) k).getSize()/3)/2);
+				break;
+			}
+		}
+	}
+	
+	public int getSize() {
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
+		while(i.hasNext()){
+			k = i.next();
+			if(k instanceof Asteroid) {
+				return (((Asteroid) k).getSize());
+			}
+		}
+		return 0;
+	}
+	
 	public void setHeight(double x) {
 		loc.setHeight(x);
 	}
 	
 	public void createAs() {
 		objlist.add(new Asteroid(loc));
+	}
+	
+	public void createAs(int x) {
+		objlist.add(new Asteroid(loc, x));
 	}
 	
 	public void createShip() {

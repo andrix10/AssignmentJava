@@ -9,7 +9,6 @@ import com.codename1.ui.plaf.Border;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.charts.util.ColorUtil;
 /*
- * implement jump key
  * fix location
  * fix center mv thing
  * uml
@@ -33,9 +32,14 @@ public class Game extends Form {
 		Container leftContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 		leftContainer.getAllStyles().setFgColor(ColorUtil.BLACK);
 		leftContainer.getAllStyles().setBgColor(ColorUtil.BLACK);
+		//Container center = new Container(mv);
+		
 		this.add(BorderLayout.CENTER, mv);
-		gw.setHeight((double)this.getInnerHeight());
-		gw.setWidth((double)this.getInnerWidth());
+		//gw.setHeight((double)this.getInnerHeight());
+		//gw.setWidth((double)this.getInnerWidth());
+		
+		gw.setHeight(1000);
+		gw.setWidth(1000);
 		
 		//leftContainer.getAllStyles().setPadding(Component.LEFT, );
 		//leftContainer.getAllStyles().setPadding(Component.RIGHT, );
@@ -76,6 +80,7 @@ public class Game extends Form {
 		 this.addKeyListener(-92 , new CDown(gw));
 		 this.addKeyListener(-93 , new CLeft(gw));
 		 this.addKeyListener(-94 , new CRight(gw));
+		 this.addKeyListener('j' , new CJump(gw));
 		 this.addKeyListener('m' , new CPrint(gw));
 		 
 		 leftContainer.add(bShip);
@@ -109,7 +114,7 @@ public class Game extends Form {
 		 //Container centerContainer = new Container();
 		 myToolbar.setTitle("Asteroid Game");
 		//play();
-		 this.setFocused(mv);
+		 this.setFocused(myToolbar);
 		 this.show();
 	}
 }

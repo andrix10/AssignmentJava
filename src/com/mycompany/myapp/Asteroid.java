@@ -16,10 +16,27 @@ public class Asteroid extends Moveable{
 		setColor(1);
 	}
 	
+	public Asteroid(Location loc, int x) {
+		setBounds(loc);
+		rand();
+		size = x;
+		setColor(1);
+	}
+	
+	public void randSplit() {
+		rand();
+	}
+	
 	public void changeColor(int a) {
 		setColor(a);
 	}
 	
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int x) {
+		size = x;
+	}
 	@Override
 	public String toString() {
 		String parentDesc = "Asteroid: " + super.toString();

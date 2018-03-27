@@ -19,27 +19,30 @@ public class MapView extends Container implements Observer{
 	}
 	
 	MapView(GameWorld gw){
-		super(new GridLayout(1,2));
+		Container center = new Container();
+		center.setLayout(new GridLayout(1,2));
+		
 		//super.add(new Label("Not updated"));
 		//super.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.BLUE));
-		super.add(new Label("Not updated"));
-		super.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.BLACK));
+		center.add(new Label("Not updated"));
+		center.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.BLACK));
 		this.gw = gw;
+		this.add(center);
 
 	}
 	
 	public double getH() {
-		return (double)super.getHeight();
+		return (double)this.getHeight();
 	}
 	
 	public double getW() {
-		return (double)super.getWidth();
+		return (double)this.getWidth();
 	}
 	
 	public void update(Observable o,Object arg) {
-		super.removeAll();
-		super.add(new Label("Updated"));
-		super.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.BLACK));
-		super.repaint();
+		this.removeAll();
+		this.add(new Label("Updated"));
+		this.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.BLACK));
+		this.repaint();
 	}
 }

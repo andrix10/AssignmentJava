@@ -11,8 +11,24 @@ public class CK extends Command{
 	}
 	
 	public void actionPerformed(ActionEvent ev) {
-		gw.destroyAs();
-		gw.destroyMissle();
-		gw.score(true);
+		if(gw.getSize()<19) {
+			gw.destroyAs();
+			gw.destroyMissle();
+			gw.score(true);
+			return;
+		}
+		if (gw.getSize()<25) {
+			gw.splitTwo();
+			gw.destroyMissle();
+			gw.score(true);
+			return;
+		}
+		if (gw.getSize()>24) {
+			gw.splitThree();
+			gw.destroyMissle();
+			gw.score(true);
+			return;
+		}
+		
 	}
 }
