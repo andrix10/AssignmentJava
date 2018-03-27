@@ -18,6 +18,7 @@ public class CH extends Command{
 			if(!Dialog.show("Restart?", "", "OK", "Cancel")) {
 				System.exit(0);
 			}
+			else gw.init();
 		}	
 	}
 }

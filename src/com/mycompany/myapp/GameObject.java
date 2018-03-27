@@ -18,10 +18,17 @@ public abstract class GameObject {
 	public GameObject(Location loc) {
 		location.setX(loc);
 		location.setY(loc);
+		location.setHeight(loc.getHeight());
+		location.setWidth(loc.getWidth());
 	}
-	
+	public void setBounds(Location loc) {
+		location.setHeight(loc.getHeight());
+		location.setWidth(loc.getWidth());
+	}
 	public void setLoc(Location loc) {
 		location.set(loc.getX(), loc.getY());
+		location.setHeight(loc.getHeight());
+		location.setWidth(loc.getWidth());
 	}
 	
 	public Location getLocation() {

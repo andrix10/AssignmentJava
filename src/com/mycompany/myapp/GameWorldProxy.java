@@ -20,23 +20,23 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	}
 	
 	public void createAs() {
-		gw.createAs();
+		System.out.println("Can't do that");
 	}
 	
 	public void createShip() {
-		gw.createShip();
+		System.out.println("Can't do that");
 	}
 	
 	public void createSaucer() {
-		gw.createSaucer();
+		System.out.println("Can't do that");
 	}
 	
 	public void createMissle() {
-		gw.createMissle();
+		System.out.println("Can't do that");
 	}
 	
 	public void createStation() {
-		gw.createStation();
+		System.out.println("Can't do that");
 	}
 	
 	public void destroyAs() {
@@ -60,19 +60,19 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	}
 	
 	public void turnS(boolean t) {
-		gw.turnS(t);
+		System.out.println("Can't do that");
 	}
 	
 	public void jumpS() {
-		gw.jumpS();
+		System.out.println("Can't do that");
 	}
 	
 	public void reffilS() {
-		gw.reffilS();
+		System.out.println("Can't do that");
 	}
 	
 	public void tick() {
-		gw.tick();
+		System.out.println("Can't do that");
 	}
 	
 	public String printD() {
@@ -89,11 +89,11 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	}
 	
 	public void increaseSS() {
-		gw.increaseSS();
+		System.out.println("Can't do that");
 	}
 	
 	public void decreaseSS() {
-		gw.decreaseSS();
+		System.out.println("Can't do that");
 	}
 	
 	public void print() {

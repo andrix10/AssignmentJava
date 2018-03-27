@@ -8,6 +8,12 @@ public class Station extends Fixed {
 		setColor(3);
 	}
 	
+	public Station(Location loc) {
+		setBounds(loc);
+		rate = ran(0,5);
+		setColor(3);
+	}
+	
 	public void resupply(){
 		
 	}

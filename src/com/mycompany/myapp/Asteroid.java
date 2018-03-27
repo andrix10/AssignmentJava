@@ -9,6 +9,13 @@ public class Asteroid extends Moveable{
 		setColor(1);
 	}
 	
+	public Asteroid(Location loc) {
+		setBounds(loc);
+		rand();
+		size = ran(6, 30);
+		setColor(1);
+	}
+	
 	public void changeColor(int a) {
 		setColor(a);
 	}

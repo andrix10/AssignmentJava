@@ -5,37 +5,50 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GameWorld extends Observable implements IGameWorld{
-	private ArrayList<GameObject> objlist;
+	//private ArrayList<GameObject> objlist;
+	private Location loc;
+	Collection objlist;
 	private boolean turn;
 	private Ship ship = null;
 	private int timer,lives,score,id;
 	private GameWorldProxy gwp;
 	
-	
 	public void init() {
-		objlist = new ArrayList<GameObject>();
+		objlist = new Collection();
 		this.timer = 0;
 		this.lives = 3;
 		this.score = 0;
 		this.id = 0;
 		gwp = new GameWorldProxy(this);
+		loc = new Location();
 		setChanged();
 		notifyObservers(gwp);
 	}
 	
+	public void setWidth(double x) {
+		loc.setWidth(x);
+	}
+	
+	public void setHeight(double x) {
+		loc.setHeight(x);
+	}
+	
 	public void createAs() {
-		objlist.add(new Asteroid());
+		objlist.add(new Asteroid(loc));
 	}
 	
 	public void createShip() {
 		if(ship == null) {
 			ship = Ship.getInst();
+			ship.setB(loc);
 			objlist.add(ship);
 		}
+		setChanged();
+		notifyObservers(gwp);
 	}
 	
 	public void createSaucer() {
-		objlist.add(new Saucer());
+		objlist.add(new Saucer(loc));
 	}
 	
 	public void createMissle() {
@@ -44,16 +57,19 @@ public class GameWorld extends Observable implements IGameWorld{
 			objlist.add(new Missle(ship));
 			ship.dec();
 		}
+		setChanged();
+		notifyObservers(gwp);
 	}
 	
 	public void createStation() {
-		objlist.add(new Station());
+		objlist.add(new Station(loc));
 	}
 	
 	public void destroyAs() {
-		Iterator<GameObject> i = objlist.iterator();
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
 		while(i.hasNext()){
-			GameObject k = i.next();
+			k = i.next();
 			if(k instanceof Asteroid) {
 				i.remove();
 				break;
@@ -62,9 +78,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	public void destroyShip() {
-		Iterator<GameObject> i = objlist.iterator();
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
 		while(i.hasNext()){
-			GameObject k = i.next();
+			k = i.next();
 			if(k instanceof Ship) {
 				i.remove();
 				ship.destroy();
@@ -75,9 +92,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	public void destroySaucer() {
-		Iterator<GameObject> i = objlist.iterator();
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
 		while(i.hasNext()){
-			GameObject k = i.next();
+			k = i.next();
 			if(k instanceof Saucer) {
 				i.remove();
 				break;
@@ -86,9 +104,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	public void destroyMissle() {
-		Iterator<GameObject> i = objlist.iterator();
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
 		while(i.hasNext()){
-			GameObject k = i.next();
+			k = i.next();
 			if(k instanceof Missle) {
 				i.remove();
 				break;
@@ -97,9 +116,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	public void destroyStation() {
-		Iterator<GameObject> i = objlist.iterator();
+		GameObject k;
+		Iterator<GameObject> i = objlist.getIterator();
 		while(i.hasNext()){
-			GameObject k = i.next();
+			k = i.next();
 			if(k instanceof Station) {
 				i.remove();
 				break;
@@ -123,8 +143,12 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	public void tick() {
+		
 		timer =+ 1;
-		for(GameObject i: objlist){
+		Object i;
+		Iterator<GameObject> iter = objlist.getIterator();
+		while(iter.hasNext()){
+			i = iter.next();
 			
 			if(i instanceof Moveable){
 				Moveable temp = (Moveable)i;
@@ -181,10 +205,16 @@ public class GameWorld extends Observable implements IGameWorld{
 		ship.setSpeed(ship.getSpeed()-1);
 	}
 	
+	
 	public void print() {
-		for(GameObject i : objlist) {
+		Object i;
+		Iterator<GameObject> iter = objlist.getIterator();
+		
+		while(iter.hasNext()) {
+			i = iter.next();
 			System.out.print(i + "\n");
 		}
+		//System.out.print(i + "\n");
 	}
 	
 	public String printD() {

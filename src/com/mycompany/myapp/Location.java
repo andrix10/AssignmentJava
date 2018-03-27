@@ -8,8 +8,8 @@ public class Location {
 	private double maxY = 768;
 	
 	public Location(){
-		this.x = 512;
-		this.y = 384;
+		this.x = maxX/2;
+		this.y = maxY/2;
 	}
 	
 	public Location(double xx, double yy){
@@ -20,14 +20,30 @@ public class Location {
 		set(loc.x, loc.y);
 	}
 	
+	public void setWidth(double x) {
+		maxX = x;
+	}
+	
+	public void setHeight(double x) {
+		maxY = x;
+	}
+	
+	public double getWidth() {
+		return maxX;
+	}
+	
+	public double getHeight() {
+		return maxY;
+	}
+	
 	public void ran() {
 		Random rand = new Random();
-		x = rand.nextInt(1024) + 0;
-		y = rand.nextInt(768) + 0;
+		x = rand.nextInt((int)maxX) + 0;
+		y = rand.nextInt((int)maxY) + 0;
 	}
 	
 	public void reset() {
-		set(512, 384);
+		set(maxX/2, maxY/2);
 	}
 	
 	public double getX() {
@@ -97,11 +113,11 @@ public class Location {
 	}
 	
 	public void set(double xx, double yy) {
-		if(xx>1024) x = 1024;
+		if(xx>maxX) x = maxX;
 		else if(xx<0) x = 0;
 		else x = xx;
 		
-		if(yy>768) y = 768;
+		if(yy>maxY) y = maxY;
 		else if(yy<0) y = 0;
 		else y = yy;
 	}

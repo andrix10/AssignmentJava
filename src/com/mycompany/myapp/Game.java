@@ -8,8 +8,14 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.charts.util.ColorUtil;
+/*
+ * implement jump key
+ * fix location
+ * fix center mv thing
+ * uml
 
 
+*/
 public class Game extends Form {
 	private GameWorld gw;
 	private PointsView pv;
@@ -18,7 +24,7 @@ public class Game extends Form {
 	public Game() {
 		gw = new GameWorld();
 		pv = new PointsView(gw);
-		mv = new MapView();
+		mv = new MapView(gw);
 		gw.init();
 		gw.addObserver(pv);
 		gw.addObserver(mv);
@@ -28,7 +34,9 @@ public class Game extends Form {
 		leftContainer.getAllStyles().setFgColor(ColorUtil.BLACK);
 		leftContainer.getAllStyles().setBgColor(ColorUtil.BLACK);
 		this.add(BorderLayout.CENTER, mv);
-		this.setFocused(mv);
+		gw.setHeight((double)this.getInnerHeight());
+		gw.setWidth((double)this.getInnerWidth());
+		
 		//leftContainer.getAllStyles().setPadding(Component.LEFT, );
 		//leftContainer.getAllStyles().setPadding(Component.RIGHT, );
 		Toolbar myToolbar = new Toolbar();
@@ -37,7 +45,7 @@ public class Game extends Form {
 		//Command sideMenuItem1 = new Command("Side Menu Item 1");
 		 //myToolbar.addCommandToSideMenu(sideMenuItem1);
 		 //add an "empty" item to overflow menu
-		 MyButton bShip = new MyButton("Addm Ship");
+		 MyButton bShip = new MyButton("Add Ship");
 		 MyButton bAsteroid = new MyButton("Add Asteroid");
 		 MyButton bSaucer = new MyButton("Add Saucer");
 		 MyButton bStation = new MyButton("Add Station");
@@ -63,7 +71,6 @@ public class Game extends Form {
 		 bH.addActionListener(new CH(gw));
 		 bX.addActionListener(new CX(gw));
 		 
-		 this.setFocused(mv);
 		 this.addKeyListener(-90 , new CFire(gw));
 		 this.addKeyListener(-91 , new CUp(gw));
 		 this.addKeyListener(-92 , new CDown(gw));
@@ -97,93 +104,12 @@ public class Game extends Form {
 		 //Command titleBarAreaItem1 = new Command("Title Bar Area Item 1");
 		 //myToolbar.addCommandToRightBar(titleBarAreaItem1);
 		 //add an "empty" item to left side of title bar area
-		 Command titleBarAreaItem2 = new Command("Title Bar Area Item 2");
-		 myToolbar.addCommandToLeftBar(titleBarAreaItem2);
-		Container centerContainer = new Container();
-		myToolbar.setTitle("Asteroid Game");
+		 //Command titleBarAreaItem2 = new Command("Title Bar Area Item 2");
+		 //myToolbar.addCommandToLeftBar(titleBarAreaItem2);
+		 //Container centerContainer = new Container();
+		 myToolbar.setTitle("Asteroid Game");
 		//play();
-		this.show();
+		 this.setFocused(mv);
+		 this.show();
 	}
 }
-	/*
-	@SuppressWarnings("rawtypes")
-	private void play() {
-		Label myLabel = new Label("Enter a new Command");
-		centerContainer.addComponent(myLabel);
-		final TextField myTextField = new TextField();
-		centerContainer.addComponent(myTextField);
-		add(BorderLayout.CENTER,centerContainer);
-		this.show();
-		myTextField.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent evt) {
-				char command = myTextField.getText().toString().trim().length() != 0 ? myTextField.getText().toString().charAt(0): '1';
-				myTextField.clear();
-				switch (command) {
-					
-					case 'j':
-						gw.jumpS();
-					break;
-					case 'n':
-						gw.reffilS();
-					break;
-					case 't':
-						gw.tick();
-					break;
-					case 'p':
-						gw.printD();
-					break;
-					case 'k':
-						gw.destroyAs();
-						gw.destroyMissle();
-						gw.score(true);
-					break;
-					case 'e':
-						gw.destroySaucer();
-						gw.destroyMissle();
-						gw.score(true);
-					break;
-					case 'c':
-						gw.destroyShip();
-						gw.destroyAs();
-						if(gw.life(false)==0) {
-							if(!Dialog.show("Restart?", "", "OK", "Cancel")) {
-								System.exit(0);
-							}
-							else gw.init();
-						}
-						
-					break;
-					case 'w':
-						gw.destroyAs();
-						gw.destroySaucer();
-					break;
-					case 'h':
-						gw.destroyShip();
-						gw.destroySaucer();
-						if(gw.life(false)==0) {
-							if(!Dialog.show("Restart?", "", "OK", "Cancel")) {
-								System.exit(0);
-							}
-							else gw.init();
-						}
-					break;
-					case 'x':
-						gw.destroyAs();
-						gw.destroyAs();
-					break;
-					case 'q':
-						if(Dialog.show("Quit?","", "OK", "Cancel")) {
-							System.exit(0);
-						}
-					break;
-					default:
-						System.out.println("Wrong input...");
-					break;
-					
-					//add cpde to handle rest commands
-				}//switch
-			}//actionPerformed
-		});//addactionlist
-	}//play
-	
-}*/

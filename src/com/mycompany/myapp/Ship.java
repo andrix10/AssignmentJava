@@ -10,6 +10,13 @@ public class Ship extends Moveable implements ISteer{
 		this.missle = 12;
 		setColor(0);
 	}
+	private Ship(Location loc) {
+		super();
+		setBounds(loc);
+		getLocation().reset();
+		this.missle = 12;
+		setColor(0);
+	}
 	
 	public static Ship getInst() {
 		if(instance == null) {
@@ -17,6 +24,13 @@ public class Ship extends Moveable implements ISteer{
 		}
 		
 		return instance;
+	}
+	
+	public void setB(Location loc) {
+		setBounds(loc);
+		System.out.println(getLocation().getHeight());
+		System.out.println(getLocation().getWidth());
+		getLocation().reset();
 	}
 	
 	public void  destroy() {

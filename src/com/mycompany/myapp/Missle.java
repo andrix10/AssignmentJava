@@ -5,6 +5,7 @@ public class Missle extends Moveable{
 	
 	public Missle(Ship s) {
 		setLoc(s.getLocation());
+		setBounds(s.getLocation());
 		if(s.getSpeed()>0) setSpeed(s.getSpeed()*2);
 		else setSpeed(2);
 		setDir(s.getDirection());
